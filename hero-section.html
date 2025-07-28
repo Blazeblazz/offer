@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #F1F2F1;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #ff6600;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        
+        .hero {
+            width: 100vw;
+            height: 100vw;
+            max-height: 100vh;
+            background-image: url('img/Hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .hero-order-btn {
+            background: white;
+            color: #ff6600;
+            border: 2px solid #ff6600;
+            padding: 18px 36px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            touch-action: manipulation;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-order-btn:hover {
+            background: #ff6600;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        .order-form {
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .order-form input {
+            padding: 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            background: #fafafa;
+        }
+        
+        .order-form input:focus {
+            outline: none;
+            border-color: #ff6600;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+        }
+        
+        .order-form button {
+            padding: 18px;
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 56px;
+            touch-action: manipulation;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .order-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 50px 20px;
+            background: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 100vw;
+                max-height: 80vh;
+            }
+            .hero-order-btn {
+                font-size: 16px;
+                padding: 14px 28px;
+            }
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 30px 15px;
+            }
+            .order-form {
+                padding: 30px 15px;
+                gap: 12px;
+            }
+        }
+        
+        .reviews {
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+        
+        .review-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .review:hover {
+            transform: translateY(-3px);
+        }
+        
+        .review h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .review p {
+            margin: 0 0 10px 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .stars {
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .review-slider {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+            }
+            
+            .review {
+                min-width: 280px;
+                scroll-snap-align: start;
+            }
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.1);
+            border: 1px solid #ffe6d9;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.15);
+            border-color: #ff6600;
+        }
+        
+        .feature h3 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .feature p {
+            margin: 0;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .gallery {
+            padding: 40px 20px;
+            background: #F1F2F1;
+            text-align: center;
+        }
+        
+        .gallery h2 {
+            margin: 0 0 30px 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .product-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 0 10px;
+        }
+        
+        .product-slide {
+            min-width: 320px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-slide img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        
+        @media (min-width: 769px) {
+            .product-slider {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                max-width: 800px;
+                margin: 0 auto;
+                overflow: visible;
+            }
+            .product-slide {
+                min-width: auto;
+            }
+        }
+        
+        .gallery-section {
+            padding: 40px 20px;
+            background: white;
+            text-align: center;
+        }
+        
+        .gallery-section h2 {
+            margin: 0 0 30px 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .gallery-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 0 10px;
+        }
+        
+        .gallery-slide {
+            min-width: 280px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-slide img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        
+        @media (min-width: 769px) {
+            .gallery-slider {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+                overflow: visible;
+            }
+            .gallery-slide {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <button class="hero-order-btn" onclick="document.querySelector('.order-form').scrollIntoView({behavior: 'smooth'})">Commander Maintenant</button>
+    </section>
+    <section class="features">
+        <div class="feature">
+            <h3>🚚 Livraison Gratuite</h3>
+            <p>Expédition rapide à votre porte sans frais supplémentaires</p>
+        </div>
+        <div class="feature">
+            <h3>🌿 96% Coton</h3>
+            <p>Tissu naturel doux et respirant pour un confort toute la journée</p>
+        </div>
+        <div class="feature">
+            <h3>⭐ Qualité Premium</h3>
+            <p>Construction durable qui résiste lavage après lavage</p>
+        </div>
+        <div class="feature">
+            <h3>👕 Taille Unique Unisexe</h3>
+            <p>Coupe parfaite pour tous, conçu pour la polyvalence</p>
+        </div>
+    </section>
+    <section class="gallery">
+        <h2 class="section-title">PACK</h2>
+        <div class="product-slider">
+            <div class="product-slide">
+                <img src="img/Products/6.png" alt="Produit 1">
+            </div>
+            <div class="product-slide">
+                <img src="img/Products/7.png" alt="Produit 2">
+            </div>
+            <div class="product-slide">
+                <img src="img/Products/8.png" alt="Produit 3">
+            </div>
+        </div>
+    </section>
+    <form class="order-form" id="order-form">
+        <div style="background: #ff4444; color: white; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; margin-bottom: 10px;">⏰ OFFRE LIMITÉE</div>
+        <div style="background: #e8f5e8; color: #2d5016; padding: 10px; border-radius: 6px; text-align: center; font-size: 14px; margin-bottom: 15px;">🔥 Seulement 12 packs restantes en stock</div>
+        <input type="text" placeholder="Nom" required>
+        <input type="text" placeholder="Ville" required>
+        <input type="tel" placeholder="Numero de Telephone" required>
+        <div style="background: #fff3e0; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; color: #ff6600; border: 2px solid #ff6600;">Prix: 299 DH</div>
+        <button type="submit">Commander Maintenant</button>
+    </form>
+    <section class="reviews">
+        <h2 class="section-title">Témoignages Clients</h2>
+        <div class="review-slider">
+            <div class="review">
+                <h4>Youssef Benali</h4>
+                <p>"Excellent produit ! La qualité est au rendez-vous et la livraison était rapide. Je recommande vivement !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <h4>Fatima Alaoui</h4>
+                <p>"Très satisfaite de mon achat. Le tissu est doux et confortable. Parfait pour toute la famille !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <h4>Ahmed Tazi</h4>
+                <p>"Livraison gratuite comme promis et produit de qualité premium. Je rachèterai sans hésiter !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <h4>Aicha Berrada</h4>
+                <p>"Le coton 96% fait vraiment la différence. Très agréable à porter, taille unique parfaite !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <h4>Omar Cherkaoui</h4>
+                <p>"Service client excellent et produit conforme à la description. Très bonne expérience d'achat !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <h4>Khadija Mansouri</h4>
+                <p>"Qualité exceptionnelle ! Mon mari et moi portons le même modèle. Unisexe vraiment pratique !"</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+    </section>
+    <section class="gallery-section">
+        <h2 class="section-title">Galerie</h2>
+        <div class="gallery-slider">
+            <div class="gallery-slide">
+                <img src="img/gallery/WhatsApp Image 2025-05-30 à 20.04.19_0cbec996.jpg" alt="Galerie 1">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/gallery/WhatsApp Image 2025-06-22 à 15.34.42_12ac4271.jpg" alt="Galerie 2">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/gallery/WhatsApp Image 2025-06-22 à 20.14.15_d837decd.jpg" alt="Galerie 3">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/gallery/WhatsApp Image 2025-07-23 à 21.59.14_f7541bf9.jpg" alt="Galerie 4">
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="contact">
+            <a href="https://wa.me/447426428601" class="whatsapp-btn">📱 WhatsApp: +44 742 642 8601</a>
+        </div>
+        <div class="copyright">
+            <p>©Blaze 2025 Tous droits réservés</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('order-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                nom: this.querySelector('input[placeholder="Nom"]').value,
+                ville: this.querySelector('input[placeholder="Ville"]').value,
+                telephone: this.querySelector('input[placeholder="Numero de Telephone"]').value,
+                prix: '299 DH',
+                date: new Date().toISOString()
+            };
+            
+            try {
+                const response = await fetch('https://api.jsonbin.io/v3/b/6887954ff7e7a370d1ef4e26', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    alert('Commande envoyée avec succès!');
+                    this.reset();
+                } else {
+                    alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                }
+            } catch (error) {
+                alert('Erreur de connexion. Veuillez réessayer.');
+            }
+        });
+    </script>
+</body>
+</html>
